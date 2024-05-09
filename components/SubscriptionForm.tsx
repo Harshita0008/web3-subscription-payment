@@ -50,11 +50,11 @@ const formSchema = z.object({
 
 const SubscriptionForm = () => {
   const { address, isConnected } = useAccount();
-  const [tokenAddress, setTokenAddress] = useState();
+  const [tokenAddress, setTokenAddress] = useState<any>();
   const { data, error, isLoading, isError, isSuccess, write } =
     useContractWrite({
       abi: AutoPayABI,
-      address: "0x7aBA2D1A0A16567bfF0667B95b1111A2EB7E503d",
+      address: "0x0C9D33C6D418D713d3b33522A92C25B0d9F87528",
       functionName: "createSubscription",
       onSuccess: (data) => {
         console.log(data);
@@ -94,7 +94,7 @@ const SubscriptionForm = () => {
     const frequency = values.frequency == "Daily" ? 0 : values.frequency == "Weekly" ? 1 : 2
 
     ApproveToken({
-      args : ["0x7aBA2D1A0A16567bfF0667B95b1111A2EB7E503d", subscription_cost * BigInt(20)]
+      args : ["0x0C9D33C6D418D713d3b33522A92C25B0d9F87528", subscription_cost * BigInt(20)]
     })
 
     write({
@@ -157,7 +157,7 @@ const SubscriptionForm = () => {
               <FormItem>
                 <FormLabel>Token</FormLabel>
                 <FormControl>
-                  <Input placeholder="ex-0x342t24...." onChange={(value) => setTokenAddress(value.target.value)}  />
+                  <Input placeholder="ex-0x342t24...." onChange={(event) => setTokenAddress(event.target.value)}  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
